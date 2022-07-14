@@ -2,7 +2,7 @@ import Foundation
 import AVFoundation
 import os.log
 
-@MainActor
+
 public final class SandboxPermissionHandler {
     static internal let logPerformance = false
     private(set) var protectedResources: Set<ProtectedResource> = []

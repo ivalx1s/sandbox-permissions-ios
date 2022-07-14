@@ -11,6 +11,7 @@ let package = Package(
     products: [
         .library(
             name: "SandboxPermissions",
+            type: .dynamic,
             targets: ["SandboxPermissions"]),
     ],
     targets: [

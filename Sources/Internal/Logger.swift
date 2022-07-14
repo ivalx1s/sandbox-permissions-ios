@@ -72,7 +72,7 @@ internal func log(
 }
 
 /// Logs a debug message to console; Works only in DEBUG build configuration.
-public func debug(
+internal func debug(
     _ message: String,
     fileID: String = #fileID,
     functionName: String = #function,
