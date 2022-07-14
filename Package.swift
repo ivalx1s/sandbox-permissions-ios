@@ -4,6 +4,10 @@ import PackageDescription
 
 let package = Package(
     name: "sandbox-permissions-ios",
+    platforms: [
+        .iOS(.v14),
+        .macOS(.v11)
+    ],
     products: [
         .library(
             name: "SandboxPermissions",
@@ -12,7 +16,8 @@ let package = Package(
     targets: [
         .target(
             name: "SandboxPermissions",
-            path: "Sources"
+            path: "Sources",
+            resources: [.process("Resources")]
         ),
     ]
 )
