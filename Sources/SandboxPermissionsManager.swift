@@ -3,7 +3,7 @@ import AVFoundation
 import os.log
 
 
-public final class SandboxPermissionHandler {
+public final class SandboxPermissionsManager {
     static internal let logPerformance = false
     private(set) var protectedResources: Set<ProtectedResource> = []
     
@@ -11,7 +11,6 @@ public final class SandboxPermissionHandler {
     @Published public internal(set) var microphoneAccessStatus: ProtectedResourceAuthorizationStatus = .undefined
     
     public init() {
-        
         for resource in ProtectedResource.allCases {
             if let protectedResource = ProtectedResource(rawValue: resource.rawValue) {
                 if Bundle.main.infoDictionary?["\(protectedResource.rawValue)"] as? String != nil {
@@ -25,10 +24,11 @@ public final class SandboxPermissionHandler {
     }
 }
 
-extension SandboxPermissionHandler {
+extension SandboxPermissionsManager {
  
+    @MainActor
     public func requestCameraAccess() async {
-        Task {
+        Task(priority: .high) {
             switch await AVCaptureDevice.requestAccess(for: .video) {
             case true: cameraAccessStatus = .authorized
             case false: cameraAccessStatus = .denied
@@ -36,7 +36,7 @@ extension SandboxPermissionHandler {
         }
     }
     
-    
+    @MainActor
     public func requestMicrophoneAccess() async {
         Task {
             switch await AVCaptureDevice.requestAccess(for: .audio) {
@@ -57,7 +57,7 @@ extension SandboxPermissionHandler {
 
 
 
-extension SandboxPermissionHandler {
+extension SandboxPermissionsManager {
     internal static func checkMicrophoneAccess() -> AVAuthorizationStatus {
         var status: AVAuthorizationStatus
         let startT = Date().timeIntervalSince1970 * 1000
@@ -83,7 +83,7 @@ extension SandboxPermissionHandler {
     }
 }
 
-extension SandboxPermissionHandler {
+extension SandboxPermissionsManager {
     internal static func checkCameraAccess() -> AVAuthorizationStatus {
         var status: AVAuthorizationStatus
         let startT = Date().timeIntervalSince1970 * 1000

@@ -1,4 +1,4 @@
 import Combine
 
 
-extension SandboxPermissionHandler: ObservableObject {}
+extension SandboxPermissionsManager: ObservableObject {}

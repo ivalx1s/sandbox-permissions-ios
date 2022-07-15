@@ -3,6 +3,13 @@ import AVFoundation
 
 public enum ProtectedResource: String, CaseIterable {
     case camera = "NSCameraUsageDescription"
+    case bluetooth = "NSBluetoothAlwaysUsageDescription"
+    case faceID = "NSFaceIDUsageDescription"
+    case locationAlways = "NSLocationAlwaysUsageDescription"
+    case locationWhenInUse = "NSLocationWhenInUseUsageDescription"
+    case accelerometer = "NSMotionUsageDescription"
+    case photoLibraryWriteOnly = "NSPhotoLibraryAddUsageDescription"
+    case photoLibraryReadWrite = "NSPhotoLibraryUsageDescription"
     case microphone = "NSMicrophoneUsageDescription"
     case contacts = "NSContactsUsageDescription"
     case nearbyInteraction = "NSNearbyInteractionUsageDescription"
@@ -19,6 +26,20 @@ extension ProtectedResource: CustomDebugStringConvertible {
             return "contacts"
         case .nearbyInteraction:
             return "nearby interaction"
+        case .bluetooth:
+            return "bluetooth"
+        case .faceID:
+            return "faceID"
+        case .locationAlways:
+            return "location always"
+        case .locationWhenInUse:
+            return "location when in use"
+        case .accelerometer:
+            return "accelerometer"
+        case .photoLibraryWriteOnly:
+            return "photo library write-only"
+        case .photoLibraryReadWrite:
+            return "photo library read-write"
         }
     }
 }
