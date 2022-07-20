@@ -13,6 +13,8 @@ public enum ProtectedResourceAuthorizationStatus {
     /// A status that indicates the user has explicitly granted an app permission to capture media.
     case authorized
     
+    case askingUserPermission
+    
     // intial status on app launch
     case undefined
 }

@@ -29,6 +29,9 @@ extension SandboxPermissionsManager {
     @MainActor
     public func requestCameraAccess() async {
         Task(priority: .high) {
+            cameraAccessStatus = .askingUserPermission
+        }
+        Task(priority: .high) {
             switch await AVCaptureDevice.requestAccess(for: .video) {
             case true: cameraAccessStatus = .authorized
             case false: cameraAccessStatus = .denied
